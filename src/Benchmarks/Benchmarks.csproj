@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<IsPackable>false</IsPackable>
+		<Platforms>AnyCPU;x86;x64</Platforms>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<DefineConstants Condition=" '$(Platform)' == 'AnyCPU' ">$(DefineConstants);AnyCPU</DefineConstants>
+		<DefineConstants Condition=" '$(Platform)' == 'x86' ">$(DefineConstants);X86</DefineConstants>
+		<DefineConstants Condition=" '$(Platform)' == 'x64' ">$(DefineConstants);X64</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
+	</ItemGroup>
+
+	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+	  <Exec Command="echo. &gt;Impl.Temp.txt&#xD;&#xA;echo #define INLINE_STRUCTREADS &gt;&gt; Impl.Temp.txt&#xD;&#xA;copy Impl.Temp.txt /A + Impl.NoInlining.cs /A CopiesDoNotEdit\Impl.InlineStructReads.cs&#xD;&#xA;&#xD;&#xA;echo. &gt;Impl.Temp.txt&#xD;&#xA;echo #define INLINE_FIELDREADS &gt;&gt; Impl.Temp.txt&#xD;&#xA;copy Impl.Temp.txt /A + Impl.NoInlining.cs /A CopiesDoNotEdit\Impl.InlineFieldReads.cs&#xD;&#xA;&#xD;&#xA;echo. &gt;Impl.Temp.txt&#xD;&#xA;echo #define INLINE_STRUCTREADS &gt;&gt; Impl.Temp.txt&#xD;&#xA;echo #define INLINE_FIELDREADS &gt;&gt; Impl.Temp.txt&#xD;&#xA;copy Impl.Temp.txt /A + Impl.NoInlining.cs /A CopiesDoNotEdit\Impl.FullInlining.cs&#xD;&#xA;&#xD;&#xA;del Impl.Temp.txt" />
+	</Target>
+
+</Project>

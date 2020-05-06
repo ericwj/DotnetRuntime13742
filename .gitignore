@@ -1,0 +1,22 @@
+// Project specific
+packages/**/*
+
+[Pp]roject.lock.json
+.vs/
+.vscode/
+artifacts/
+/*.sdf
+/*.VC.opendb
+
+[Bb]in/
+[Oo]bj/
+**/x86/Debug
+**/x86/Release
+**/x64/Debug
+**/x64/Release
+
+//*.pdb
+*.winmd
+*.user
+AppPackages/
+BenchmarkDotNet.Artifacts/
