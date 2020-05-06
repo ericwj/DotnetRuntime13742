@@ -19,4 +19,3 @@ artifacts/
 *.winmd
 *.user
 AppPackages/
-BenchmarkDotNet.Artifacts/
