@@ -1,7 +1,4 @@
-using System;
-using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
 using BenchmarkDotNet.Attributes;
 
@@ -437,7 +434,50 @@ namespace Benchmarks
 				all.Z.u1 = cursor;
 				cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
 #if TEST
-				if (end != EndOfStreamMarker) throw new InvalidOperationException();
+				if (cursor != EndOfStreamMarker) throw new InvalidOperationException();
+#endif
+			}
+			return all;
+		}
+		[Benchmark(OperationsPerInvoke = OperationsPerInvoke)]
+		public Structs FromByteRef_ManualFieldForField_BigData() {
+			Structs all = default;
+			ref var location = ref bigdata[0];
+			for (var i = 0; i < OperationsPerInvoke; i++) {
+				ref var cursor = ref location;
+
+				all.A.a = Unsafe.As<byte, uint>(ref cursor);
+				cursor = ref Unsafe.Add(ref cursor, sizeof(uint));
+
+				all.B.b = Unsafe.As<byte, ushort>(ref cursor);
+				cursor = ref Unsafe.Add(ref cursor, sizeof(ushort));
+
+				all.C.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.C.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.C.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.D.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.D.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.D.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.E.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.E.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.E.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.F.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.F.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.F.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.G.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.G.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.G.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.H.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.H.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.H.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.I.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.I.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.I.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.J.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.J.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.J.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.K.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.K.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.K.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.L.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.L.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.L.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.M.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.M.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.M.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.N.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.N.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.N.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.O.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.O.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.O.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.P.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.P.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.P.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.Q.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.Q.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.Q.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.R.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.R.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.R.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.S.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.S.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.S.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.T.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.T.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.T.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.U.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.U.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.U.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.V.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.V.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.V.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.W.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.W.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.W.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.X.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.X.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.X.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.Y.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.Y.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.Y.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+				all.Z.u4 = Unsafe.As<byte, uint>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(uint)); all.Z.u2 = Unsafe.As<byte, ushort>(ref cursor); cursor = ref Unsafe.Add(ref cursor, sizeof(ushort)); all.Z.u1 = cursor; cursor = ref Unsafe.Add(ref cursor, sizeof(byte));
+#if TEST
+				if (cursor != EndOfStreamMarker) throw new InvalidOperationException();
 #endif
 			}
 			return all;
